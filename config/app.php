@@ -194,4 +194,21 @@ return [
         // ...
     ])->toArray(),
 
+
+    /*
+    |---------------------
+    | Date Time Formating
+    |---------------------
+    */
+
+    'date_format' => 'd-m-Y',
+    'month_format' => 'F',
+    'year_format' => 'Y',
+    'week_format' => 'W',
+    'time_format' => 'H:i:s',
+    'date_time_format' => 'd-m-Y H:i:s',
+    'billing_period_format' => 'd M Y',
+    'monthly_billing_period_format' => 'F-Y',
+    'expiry_time_format' => 'MMM D Y HH:mm:ss ZZ',
+
 ];
