@@ -157,7 +157,7 @@ return [
         'node1' => [
             'driver' => 'mysql',
             'host' => env('NODE1_DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '6612'),
+            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -176,7 +176,7 @@ return [
         'node1pgsql' => [
             'driver' => 'pgsql',
             'host' => env('NODE1_DB_HOST', '127.0.0.1'),
-            'port' => env('PGSQL_DB_PORT', '6864'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -190,7 +190,7 @@ return [
         'node2' => [
             'driver' => 'mysql',
             'host' => env('NODE2_DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '6612'),
+            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -209,7 +209,7 @@ return [
         'node2pgsql' => [
             'driver' => 'pgsql',
             'host' => env('NODE2_DB_HOST', '127.0.0.1'),
-            'port' => env('PGSQL_DB_PORT', '6864'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -223,7 +223,7 @@ return [
         'node3' => [
             'driver' => 'mysql',
             'host' => env('NODE3_DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '6612'),
+            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -242,7 +242,7 @@ return [
         'node3pgsql' => [
             'driver' => 'pgsql',
             'host' => env('NODE3_DB_HOST', '127.0.0.1'),
-            'port' => env('PGSQL_DB_PORT', '6864'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -256,7 +256,7 @@ return [
         'node4' => [
             'driver' => 'mysql',
             'host' => env('NODE4_DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '6612'),
+            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -275,7 +275,7 @@ return [
         'node4pgsql' => [
             'driver' => 'pgsql',
             'host' => env('NODE4_DB_HOST', '127.0.0.1'),
-            'port' => env('PGSQL_DB_PORT', '6864'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -289,7 +289,7 @@ return [
         'node5' => [
             'driver' => 'mysql',
             'host' => env('NODE5_DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '6612'),
+            'port' => env('DB_PORT', '3306'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -308,7 +308,7 @@ return [
         'node5pgsql' => [
             'driver' => 'pgsql',
             'host' => env('NODE5_DB_HOST', '127.0.0.1'),
-            'port' => env('PGSQL_DB_PORT', '6864'),
+            'port' => env('PGSQL_DB_PORT', '5432'),
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
