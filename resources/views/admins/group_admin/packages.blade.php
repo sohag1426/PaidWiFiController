@@ -1,0 +1,35 @@
+@extends ('laraview.layouts.sideNavLayout')
+
+@section('title')
+Packages
+@endsection
+
+@section('pageCss')
+@endsection
+
+@section('activeLink')
+@php
+$active_menu = '2';
+$active_link = '7';
+@endphp
+@endsection
+
+@section('sidebar')
+@include('admins.group_admin.sidebar')
+@endsection
+
+@section('contentTitle')
+
+<form action="{{ route('operators.master_packages.create', ['operator' => $operator->id]) }}">
+
+    <ul class="nav flex-column flex-sm-row">
+        <li class="nav-item">
+            <button type="submit" class="btn btn-primary ml-2"> <i class="fas fa-plus"></i> Add Package</button>
+        </li>
+    </ul>
+
+</form>
+
+@endsection
+
+@include('admins.components.operator-packages')
