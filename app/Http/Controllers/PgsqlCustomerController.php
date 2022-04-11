@@ -2,84 +2,42 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\customer;
+use App\Models\operator;
 use App\Models\pgsql_customer;
 use Illuminate\Http\Request;
 
 class PgsqlCustomerController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Freeradius\customer $customer
+     * @return void
      */
-    public function store(Request $request)
+    public static function updateOrCreate(customer $customer)
     {
-        //
+        $operator = operator::find($customer->operator_id);
+        $model = new pgsql_customer();
+        $model->setConnection($operator->pgsql_connection);
+        $model->updateOrCreate(
+            ['mgid' => $customer->mgid, 'customer_id' => $customer->id],
+            ['operator_id' => $customer->operator_id, 'username' => $customer->username]
+        );
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\pgsql_customer  $pgsql_customer
-     * @return \Illuminate\Http\Response
-     */
-    public function show(pgsql_customer $pgsql_customer)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\pgsql_customer  $pgsql_customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(pgsql_customer $pgsql_customer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\pgsql_customer  $pgsql_customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, pgsql_customer $pgsql_customer)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\pgsql_customer  $pgsql_customer
-     * @return \Illuminate\Http\Response
+     * @param  \App\Models\Freeradius\customer  $customer
+     * @return void
      */
-    public function destroy(pgsql_customer $pgsql_customer)
+    public static function destroy(customer $customer)
     {
-        //
+        $operator = operator::find($customer->operator_id);
+        $model = new pgsql_customer();
+        $model->setConnection($operator->pgsql_connection);
+        $model->where('username', $customer->username)->delete();
     }
 }

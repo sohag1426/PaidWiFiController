@@ -42,9 +42,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])
     ->middleware(['auth'])
@@ -194,3 +191,4 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
 
 require __DIR__ . '/auth.php';
+require __DIR__ . '/routes_of_customers.php';
