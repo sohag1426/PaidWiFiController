@@ -80,22 +80,6 @@
             </div>
             <!--api_password-->
 
-            <!--overwrite_comment-->
-            <div class="form-group">
-                <label for="overwrite_comment"><span class="text-danger">*</span>Overwrite PPP Secrets Comment</label>
-                <select class="form-control" id="overwrite_comment" name="overwrite_comment" required>
-                    <option selected>{{ $router->overwrite_comment }}</option>
-                    <option value="yes">yes</option>
-                    <option value="no">no</option>
-                </select>
-                @error('overwrite_comment')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-            <!--/overwrite_comment-->
-
         </div>
 
         <div class="card-footer">

@@ -92,7 +92,7 @@
 
                         <!--Routers-->
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{{ route('routers.index') }}"
                                 class="nav-link @if ($link['2']['1']) active @endif ">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Routers</p>
@@ -185,6 +185,16 @@
                     </a>
 
                     <ul class="nav nav-treeview">
+
+                        <!--New Customers-->
+                        <li class="nav-item">
+                            <a href="#"
+                                class="nav-link @if ($link['5']['0']) active @endif ">
+                                <i class="fas fa-plus nav-icon nav-icon"></i>
+                                <p>New Customer</p>
+                            </a>
+                        </li>
+                        <!--/New Customers-->
 
                         <!--Customers-->
                         <li class="nav-item">

@@ -30,16 +30,6 @@ $active_link = '1';
         </a>
     </li>
     <!--/New Operator-->
-
-    <!--upload pppoe profile-->
-    <li class="nav-item">
-        <a class="btn btn-outline-success my-2 my-sm-0" href="{{ route('upload-ppp-profile') }}">
-            <i class="fas fa-upload"></i>
-            Upload PPP Profiles
-        </a>
-    </li>
-    <!--/upload pppoe profile-->
-
 </ul>
 
 @endsection
