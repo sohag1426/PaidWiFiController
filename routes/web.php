@@ -97,7 +97,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         ->only(['index', 'edit', 'update', 'destroy']);
 
     Route::resource('temp_packages', TempPackageController::class)
-        ->only(['store', 'edit', 'update']);
+        ->only(['store']);
 
     Route::resource('temp_packages.master_packages', PackageCreateController::class)
         ->only(['create', 'store']);

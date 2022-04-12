@@ -102,7 +102,7 @@
 
                         <!--Master packages-->
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{{ route('master_packages.index') }}"
                                 class="nav-link @if ($link['2']['6']) active @endif ">
                                 <i class="fas fa-angle-right text-danger nav-icon"></i>
                                 <p>Master Packages</p>
