@@ -21,7 +21,6 @@ use App\Http\Controllers\NasController;
 use App\Http\Controllers\OnlineCustomersController;
 use App\Http\Controllers\OnlineCustomerWidgetController;
 use App\Http\Controllers\OperatorMasterPackageController;
-use App\Http\Controllers\OperatorPackageController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\PackageCreateController;
 use App\Http\Controllers\RechargeCardController;
@@ -94,7 +93,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     // <<master packages
     Route::resource('master_packages', MasterPackageController::class)
-        ->only(['index', 'edit', 'update', 'destroy']);
+        ->only(['index', 'show', 'edit', 'update', 'destroy']);
 
     Route::resource('temp_packages', TempPackageController::class)
         ->only(['store']);
@@ -119,12 +118,6 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     // <<packages
     Route::resource('packages', PackageController::class)
         ->only(['index', 'edit', 'update', 'destroy']);
-
-    Route::resource('master_packages', MasterPackageController::class)
-        ->only(['show']);
-
-    Route::resource('operators.packages', OperatorPackageController::class)
-        ->only(['index', 'create', 'store', 'edit', 'update']);
     // packages>>
 
     // << recharge cards

@@ -272,4 +272,51 @@ class operator extends Authenticatable implements
                 break;
         }
     }
+
+    /**
+     * Get the assigned master packages for the operator.
+     */
+    public function assigned_master_packages()
+    {
+        return $this->belongsToMany(master_package::class, 'packages', 'operator_id', 'mpid', 'id', 'id');
+    }
+
+    /**
+     * Get the assigned packages for the operator.
+     */
+    public function assigned_packages()
+    {
+        if ($this->role == 'manager') {
+            return $this->hasMany(package::class, 'operator_id', 'gid');
+        }
+        return $this->hasMany(package::class, 'operator_id', 'id');
+    }
+
+    /**
+     * Get the assigned packages for the operator.
+     */
+    public function packages()
+    {
+        if ($this->role == 'manager') {
+            return $this->hasMany(package::class, 'operator_id', 'gid');
+        }
+        return $this->hasMany(package::class, 'operator_id', 'id');
+    }
+
+
+    /**
+     * Get the assigned packages for the operator.
+     */
+    public function allPackages()
+    {
+        if ($this->role == 'group_admin') {
+            return $this->hasMany(package::class, 'mgid', 'id');
+        }
+
+        if ($this->role == 'manager') {
+            return $this->hasMany(package::class, 'operator_id', 'gid');
+        }
+
+        return $this->hasMany(package::class, 'operator_id', 'id');
+    }
 }
