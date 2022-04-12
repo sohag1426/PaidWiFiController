@@ -112,7 +112,7 @@
 
                         <!--packages-->
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{{ route('packages.index') }}"
                                 class="nav-link @if ($link['2']['7']) active @endif ">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Packages</p>
