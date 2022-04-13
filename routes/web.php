@@ -131,8 +131,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         ->only(['create', 'store']);
 
     Route::resource('recharge_cards', RechargeCardController::class)
-        ->only(['index', 'create', 'store', 'destroy'])
-        ->middleware('EAB');
+        ->only(['index', 'create', 'store', 'destroy']);
 
     Route::resource('recharge_cards_download', RechargeCardDownloadController::class)
         ->only(['create', 'store']);
