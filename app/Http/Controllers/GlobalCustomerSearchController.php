@@ -114,7 +114,7 @@ class GlobalCustomerSearchController extends Controller
                 $cache_key = 'customer_' . $value;
                 $seconds = 600;
                 $customer = Cache::remember($cache_key, $seconds, function () use ($value) {
-                    return customer::with(['custom_attributes', 'radaccts'])->where('mobile', $value)->first();
+                    return customer::with(['radaccts'])->where('mobile', $value)->first();
                 });
                 break;
 
@@ -122,7 +122,7 @@ class GlobalCustomerSearchController extends Controller
                 $cache_key = 'customer_' . $operator_id . '_' . getVarName($value);
                 $seconds = 600;
                 $customer = Cache::remember($cache_key, $seconds, function () use ($value) {
-                    return customer::with(['custom_attributes', 'radaccts'])->where('username', $value)->first();
+                    return customer::with(['radaccts'])->where('username', $value)->first();
                 });
                 break;
 
@@ -134,7 +134,7 @@ class GlobalCustomerSearchController extends Controller
                         ['name', '=', $value],
                         ['operator_id', '=', $operator_id],
                     ];
-                    return customer::with(['custom_attributes', 'radaccts'])->where($where)->first();
+                    return customer::with(['radaccts'])->where($where)->first();
                 });
                 break;
         }

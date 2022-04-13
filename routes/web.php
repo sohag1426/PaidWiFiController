@@ -13,9 +13,13 @@ use App\Http\Controllers\CustomerDuplicateValueCheckController;
 use App\Http\Controllers\CustomerIdSearchController;
 use App\Http\Controllers\CustomerMobileSearchController;
 use App\Http\Controllers\CustomerNameSearchController;
+use App\Http\Controllers\CustomerPackageChangeController;
+use App\Http\Controllers\CustomerSpeedLimitController;
 use App\Http\Controllers\CustomersSmsHistoryCreateController;
 use App\Http\Controllers\CustomerSuspendController;
+use App\Http\Controllers\CustomerTimeLimitController;
 use App\Http\Controllers\CustomerUsernameSearchController;
+use App\Http\Controllers\CustomerVolumeLimitController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GlobalCustomerSearchController;
 use App\Http\Controllers\MasterPackageController;
@@ -162,14 +166,23 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
             'customer-details' => 'customer'
         ]);
 
-    Route::get('/customer-activate/{customer}', [CustomerActivateController::class, 'update'])
-        ->name('customer-activate');
+    Route::resource('/customer-package-time-limit', CustomerTimeLimitController::class)
+        ->only(['edit', 'update'])
+        ->parameters([
+            'customer-package-time-limit' => 'customer'
+        ]);
 
-    Route::get('/customer-suspend/{customer}', [CustomerSuspendController::class, 'update'])
-        ->name('customer-suspend');
+    Route::resource('/customer-package-speed-limit', CustomerSpeedLimitController::class)
+        ->only(['edit', 'update'])
+        ->parameters([
+            'customer-package-speed-limit' => 'customer'
+        ]);
 
-    Route::get('/customer-disable/{customer}', [CustomerDisableController::class, 'update'])
-        ->name('customer-disable');
+    Route::resource('/customer-package-volume-limit', CustomerVolumeLimitController::class)
+        ->only(['edit', 'update'])
+        ->parameters([
+            'customer-package-volume-limit' => 'customer'
+        ]);
 
     Route::resource('customers.sms_histories', CustomersSmsHistoryCreateController::class)
         ->only(['create', 'store']);

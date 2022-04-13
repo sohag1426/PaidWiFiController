@@ -25,7 +25,7 @@ class CustomerDetailsController extends Controller
         $seconds = 600;
 
         $customer = Cache::remember($cache_key, $seconds, function () use ($customer) {
-            return customer::with(['custom_attributes', 'radaccts'])->where('id', $customer)->firstOrFail();
+            return customer::where('id', $customer)->firstOrFail();
         });
 
         return self::getDetailedCustomerView($customer);

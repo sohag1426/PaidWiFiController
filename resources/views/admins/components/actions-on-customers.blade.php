@@ -6,15 +6,6 @@
     </button>
 
     <div class="dropdown-menu" aria-labelledby="btnGroupActionsOnCustomer">
-
-        @if (Auth::user()->subscription_status === 'suspended')
-
-        <a class="dropdown-item" href="#">
-            Subscription Suspended
-        </a>
-
-        @else
-
         {{-- --}}
         @can('update', $customer)
         @if (isset($customers))
@@ -36,32 +27,6 @@
         </a>
         @endcan
         {{-- --}}
-        @can('activate', $customer)
-        <a class="dropdown-item" href="{{ route('customer-activate', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Activate
-        </a>
-        @elsecan('viewActivateOptions', $customer)
-        <a class="dropdown-item" href="#"
-            onclick="showActivateOptions('{{ route('customer-activate-options', ['id' => $customer->id ]) }}')">
-            Activate
-        </a>
-        @endcan
-        {{-- --}}
-        @can('suspend', $customer)
-        <a class="dropdown-item" href="{{ route('customer-suspend', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Suspend
-        </a>
-        @endcan
-        {{-- --}}
-        @can('disable', $customer)
-        <a class="dropdown-item" href="{{ route('customer-disable', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Disable
-        </a>
-        @endcan
-        {{-- --}}
         @can('editSpeedLimit', $customer)
         <a class="dropdown-item" href="{{ route('customer-package-time-limit.edit', ['customer' => $customer->id]) }}">
             Edit Time
@@ -75,14 +40,6 @@
         </a>
         @endcan
         {{-- --}}
-        @can('changePackage', $customer)
-        <a class="dropdown-item" href="{{ route('customer-package-change.edit', ['customer' => $customer->id]) }}">
-            Extend/Change Package
-        </a>
-        @endcan
-        {{-- --}}
-        @endif
-
     </div>
 
 </div>

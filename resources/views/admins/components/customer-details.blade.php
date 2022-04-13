@@ -211,7 +211,7 @@
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Router
                             <span class="badge badge-pill">
-                                {{ $customer->router->id > 0 ? $customer->router->nasname : $customer->router_ip }}
+                                {{ $customer->router_ip }}
                             </span>
                         </li>
 
