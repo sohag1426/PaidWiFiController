@@ -57,10 +57,6 @@
                                     Edit
                                 </a>
 
-                                <a class="dropdown-item" href="{{ route('recharge_cards_download.create') }}">
-                                    Download Report
-                                </a>
-
                                 <form method="post"
                                     action="{{ route('card_distributors.destroy', ['card_distributor' => $card_distributor->id]) }}"
                                     onsubmit="return confirm('Are you sure to Delete')">

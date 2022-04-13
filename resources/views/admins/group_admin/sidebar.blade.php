@@ -140,7 +140,7 @@
 
                         <!--Card Distributors-->
                         <li class="nav-item">
-                            <a href="#"
+                            <a href="{{ route('card_distributors.index') }}"
                                 class="nav-link @if ($link['13']['1']) active @endif ">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Card Distributors</p>

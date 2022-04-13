@@ -12,9 +12,17 @@ class CardDistributorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $where = [
+            ['operator_id', '=', $request->user()->id],
+        ];
+
+        $card_distributors = card_distributor::where($where)->get();
+
+        return view('admins.group_admin.card-distributors', [
+            'card_distributors' => $card_distributors,
+        ]);
     }
 
     /**
@@ -22,9 +30,10 @@ class CardDistributorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
+        return view('admins.group_admin.card-distributors-create');
     }
 
     /**
@@ -35,7 +44,28 @@ class CardDistributorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $mobile = validate_mobile($request->mobile);
+
+        //Invalid Mobile
+        if ($mobile == 0) {
+            abort(500, 'invalid mobile number');
+        }
+
+        $request->validate([
+            'name' => 'required|string',
+            'mobile' => 'required',
+            'store_name' => 'required',
+            'store_address' => 'required',
+        ]);
+
+        $card_distributor = new card_distributor();
+        $card_distributor->operator_id = $request->user()->id;
+        $card_distributor->name = $request->name;
+        $card_distributor->mobile = $request->mobile;
+        $card_distributor->store_name = $request->store_name;
+        $card_distributor->store_address = $request->store_address;
+        $card_distributor->save();
+        return redirect()->route('card_distributors.index')->with('success', 'Card Distributor has been added successfully');
     }
 
     /**
@@ -55,9 +85,11 @@ class CardDistributorController extends Controller
      * @param  \App\Models\card_distributor  $card_distributor
      * @return \Illuminate\Http\Response
      */
-    public function edit(card_distributor $card_distributor)
+    public function edit(Request $request, card_distributor $card_distributor)
     {
-        //
+        return view('admins.group_admin.card-distributors-edit', [
+            'card_distributor' => $card_distributor,
+        ]);
     }
 
     /**
@@ -69,7 +101,30 @@ class CardDistributorController extends Controller
      */
     public function update(Request $request, card_distributor $card_distributor)
     {
-        //
+        $mobile = validate_mobile($request->mobile);
+
+        //Invalid Mobile
+        if ($mobile == 0) {
+            abort(500, 'invalid mobile number');
+        }
+
+        if ($request->user()->id !== $card_distributor->operator_id) {
+            abort(500, 'not authorized');
+        }
+
+        $request->validate([
+            'name' => 'required|string',
+            'mobile' => 'required',
+            'store_name' => 'required',
+            'store_address' => 'required',
+        ]);
+
+        $card_distributor->name = $request->name;
+        $card_distributor->mobile = $request->mobile;
+        $card_distributor->store_name = $request->store_name;
+        $card_distributor->store_address = $request->store_address;
+        $card_distributor->save();
+        return redirect()->route('card_distributors.index')->with('success', 'Card Distributor has been updated successfully');
     }
 
     /**
@@ -78,8 +133,14 @@ class CardDistributorController extends Controller
      * @param  \App\Models\card_distributor  $card_distributor
      * @return \Illuminate\Http\Response
      */
-    public function destroy(card_distributor $card_distributor)
+    public function destroy(Request $request, card_distributor $card_distributor)
     {
-        //
+
+        if ($request->user()->id !== $card_distributor->operator_id) {
+            abort(500, 'not authorized');
+        }
+
+        $card_distributor->delete();
+        return redirect()->route('card_distributors.index')->with('success', 'Deleted successfully!');
     }
 }
