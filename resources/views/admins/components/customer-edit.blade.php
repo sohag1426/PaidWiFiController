@@ -22,30 +22,6 @@
 
                     @method('put')
 
-                    <!--zone_id-->
-                    <div class="form-group">
-                        <label for="zone_id">Customer Zone</label>
-                        <select class="form-control" id="zone_id" name="zone_id">
-                            <option value="{{ $customer->zone_id }}" selected>{{ $customer->zone }}</option>
-                            @foreach ($customer_zones as $customer_zone)
-                            <option value="{{ $customer_zone->id }}">{{ $customer_zone->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!--/zone_id-->
-
-                    <!--device_id-->
-                    <div class="form-group">
-                        <label for="device_id">Device</label>
-                        <select class="form-control" id="device_id" name="device_id">
-                            <option value="{{ $customer->device_id }}" selected>{{ $customer->device }}</option>
-                            @foreach ($devices as $device)
-                            <option value="{{ $device->id }}">{{ $device->name }} ({{ $device->location }})</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <!--/device_id-->
-
                     <!--name-->
                     <div class="form-group">
                         <label for="name"><span class="text-danger">*</span>Name</label>
@@ -76,7 +52,6 @@
                     </div>
                     <!--/mobile-->
 
-
                     <!--email-->
                     <div class="form-group">
                         <label for="email">Email</label>
@@ -89,27 +64,6 @@
                         @enderror
                     </div>
                     <!--/email-->
-
-                    <!--billing_profile_id-->
-                    @can('editBillingProfile', $customer)
-                    <div class="form-group">
-                        <label for="billing_profile_id"><span class="text-danger">*</span>Billing Profile</label>
-                        <select class="form-control" id="billing_profile_id" name="billing_profile_id" required>
-                            <option value="{{ $customer->billing_profile_id }}" selected>{{ $customer->billing_profile
-                                }}
-                            </option>
-                            @foreach ($billing_profiles->sortBy('name') as $billing_profile)
-                            <option value="{{ $billing_profile->id }}">{{ $billing_profile->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    @endcan
-                    <!--/billing_profile_id-->
-
-                </div>
-                <!--/col-sm-6-->
-
-                <div class="col-sm-6">
 
                     <!--username-->
                     <div class="form-group">
@@ -141,48 +95,11 @@
                     </div>
                     <!--/password-->
 
-                    @if ($customer->connection_type === 'StaticIp')
 
-                    <!--router_id-->
-                    <div class="form-group">
-                        <label for="router_id"><span class="text-danger">*</span>Router</label>
+                </div>
+                <!--/col-sm-6-->
 
-                        <select class="form-control" id="router_id" name="router_id" required>
-
-                            <option value="{{ $customer->router_id }}" selected>{{ $customer->router->nasname }}
-                            </option>
-
-                            @foreach ($routers as $router)
-                            <option value="{{ $router->id }}">{{ $router->location }} :: {{ $router->nasname }}
-                            </option>
-                            @endforeach
-
-                        </select>
-
-                        @error('router_id')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <!--/router_id-->
-
-                    <!--login_ip-->
-                    <div class="form-group">
-                        <label for="login_ip"><span class="text-danger">*</span>IP Address</label>
-                        <input name="login_ip" type="text" class="form-control @error('login_ip') is-invalid @enderror"
-                            id="login_ip" value="{{ $customer->login_ip }}" required>
-
-                        @error('login_ip')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-
-                    </div>
-                    <!--/login_ip-->
-
-                    @endif
+                <div class="col-sm-6">
 
                     <!--house_no-->
                     <div class="form-group">
@@ -241,20 +158,6 @@
 
             </div>
             <!--/row-->
-
-            {{-- custom fields --}}
-            <div class="row">
-                @foreach ($custom_fields as $custom_field)
-                <div class="col">
-                    <div class="form-group">
-                        <label for="{{ $custom_field->id }}">{{ $custom_field->name }}</label>
-                        <input name="{{ $custom_field->id }}" type="text" class="form-control"
-                            id="{{ $custom_field->id }}" value="{{ $custom_field->value }}">
-                    </div>
-                </div>
-                @endforeach
-            </div>
-            {{-- custom fields --}}
 
             {{-- comment --}}
             <div class="row">

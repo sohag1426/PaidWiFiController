@@ -40,6 +40,6 @@ class CustomerSpeedLimitController extends Controller
 
         HotspotCustomersLimitController::updateOrCreate($customer);
 
-        return redirect()->route('customers.index')->with('success', 'Speed Limit has been updated successfully');
+        return redirect()->route('customers.index', ['refresh' => 1])->with('success', 'Speed Limit has been updated successfully');
     }
 }

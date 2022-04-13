@@ -41,6 +41,6 @@ class CustomerVolumeLimitController extends Controller
 
         HotspotCustomersLimitController::updateOrCreate($customer);
 
-        return redirect()->route('customers.index')->with('success', 'Volume Limit Edited successfully');
+        return redirect()->route('customers.index', ['refresh' => 1])->with('success', 'Volume Limit Edited successfully');
     }
 }

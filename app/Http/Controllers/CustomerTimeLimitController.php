@@ -49,6 +49,6 @@ class CustomerTimeLimitController extends Controller
 
         HotspotCustomersExpirationController::updateOrCreate($customer);
 
-        return redirect()->route('customers.index')->with('success', 'Time Limit has been Extended successfully');
+        return redirect()->route('customers.index', ['refresh' => 1])->with('success', 'Time Limit has been Extended successfully');
     }
 }

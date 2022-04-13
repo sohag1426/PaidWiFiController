@@ -257,7 +257,6 @@ class CustomerController extends Controller
         $customer->thana = $request->thana;
         $customer->district = $request->district;
         $customer->invalid_username = 0;
-        $customer->comment = $request->comment;
         $customer->save();
 
         if ($customer->wasChanged('username')) {
