@@ -178,7 +178,8 @@
 
                         <!--New Customers-->
                         <li class="nav-item">
-                            <a href="#" class="nav-link @if ($link['5']['0']) active @endif ">
+                            <a href="{{ route('temp_customers.create') }}"
+                                class="nav-link @if ($link['5']['0']) active @endif ">
                                 <i class="fas fa-plus nav-icon nav-icon"></i>
                                 <p>New Customer</p>
                             </a>
@@ -187,7 +188,8 @@
 
                         <!--Customers-->
                         <li class="nav-item">
-                            <a href="#" class="nav-link @if ($link['5']['1']) active @endif ">
+                            <a href="{{ route('customers.index') }}"
+                                class="nav-link @if ($link['5']['1']) active @endif ">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Customers</p>
                             </a>
@@ -196,7 +198,8 @@
 
                         <!--Online Customers-->
                         <li class="nav-item">
-                            <a href="#" class="nav-link @if ($link['5']['2']) active @endif ">
+                            <a href="{{ route('online_customers.index') }}"
+                                class="nav-link @if ($link['5']['2']) active @endif ">
                                 <i class="fas fa-angle-right nav-icon"></i>
                                 <p>Online Customers</p>
                             </a>

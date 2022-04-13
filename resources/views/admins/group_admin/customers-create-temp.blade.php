@@ -18,9 +18,4 @@ $active_link = '0';
 @include('admins.group_admin.sidebar')
 @endsection
 
-@section('contentTitle')
-<a class="btn btn-link" href="{{ route('customer_zones.create') }}">Add Customer Zone</a>
-<a class="btn btn-link ml-2" href="{{ route('devices.create') }}">Add Device</a>
-@endsection
-
 @include('admins.components.customers-create-temp')

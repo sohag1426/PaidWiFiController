@@ -7,11 +7,6 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" id="Bills-tab" data-toggle="tab" href="#Bills" role="tab" aria-controls="Bills"
-            aria-selected="false">Bills</a>
-    </li>
-
-    <li class="nav-item">
         <a class="nav-link" id="PaymentHistory-tab" data-toggle="tab" href="#PaymentHistory" role="tab"
             aria-controls="PaymentHistory" aria-selected="false">Payment History</a>
     </li>
@@ -22,28 +17,14 @@
     </li>
 
     <li class="nav-item">
-        <a class="nav-link" id="Bandwidth-graph-tab" data-toggle="tab" href="#BandwidthGraph" role="tab"
-            aria-controls="BandwidthGraph" aria-selected="false">
-            Bandwidth Graph
-        </a>
-    </li>
-
-    <li class="nav-item">
         <a class="nav-link" id="SmsHistory-tab" data-toggle="tab" href="#SmsHistory" role="tab"
             aria-controls="SmsHistory" aria-selected="false">SMS History</a>
-    </li>
-
-    <li class="nav-item">
-        <a class="nav-link" id="package_change_history-tab" data-toggle="tab" href="#package_change_history" role="tab"
-            aria-controls="package_change_history" aria-selected="false">Package Change History</a>
     </li>
 
 </ul>
 {{-- Navigation bar --}}
 
 <div class="tab-content" id="myTabContent">
-
-
 
     {{-- Profile --}}
     <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
@@ -74,25 +55,8 @@
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Connection Type
-                            <span class="badge badge-pill">{{ $customer->connection_type }}</span>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
                             Customer Status
                             <span class="text-danger">{{ $customer->status }}</span>
-                        </li>
-
-                        @if ($customer->status === 'suspended')
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Suspend Reason
-                            <span class="text-danger">{{ $customer->suspend_reason }}</span>
-                        </li>
-                        @endif
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Billing Profile
-                            <span class="badge badge-pill">{{ $customer->billing_profile }}</span>
                         </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -105,46 +69,11 @@
                             <span class="badge badge-pill">{{ $customer->mobile }}</span>
                         </li>
 
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Email
-                            <span class="badge badge-pill">{{ $customer->email }}</span>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Payment Status
-                            <span class="badge badge-pill">{{ $customer->payment_status }}</span>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            Advance Payment
-                            <span class="badge badge-pill">{{ $customer->advance_payment }}
-                                {{ config('consumer.currency') }}</span>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            zone
-                            <span class="badge badge-pill">{{ $customer->zone }}</span>
-                        </li>
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            NID Number
-                            <span class="badge badge-pill">{{ $customer->nid }}</span>
-                        </li>
 
                         <li class="list-group-item d-flex justify-content-between align-items-center">
                             Registration date
                             <span class="badge badge-pill">{{ $customer->registration_date }}</span>
                         </li>
-
-                        @foreach ($customer->custom_attributes as $custom_attribute)
-
-                        <li class="list-group-item d-flex justify-content-between align-items-center">
-                            {{ $custom_attribute->name }}
-                            <span class="badge badge-pill">{{ $custom_attribute->value }}</span>
-                        </li>
-
-                        @endforeach
-
 
                     </ul>
 
@@ -345,83 +274,6 @@
     </div>
     {{-- Profile --}}
 
-    {{-- Bills --}}
-    <div class="tab-pane fade" id="Bills" role="tabpanel" aria-labelledby="Bills-tab">
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Customer ID</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Mobile</th>
-                    <th scope="col">package</th>
-                    <th scope="col">Amount</th>
-                    <th scope="col">Billing Period</th>
-                    <th scope="col">Due Date</th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-
-                @foreach ($bills as $bill )
-                <tr>
-                    <td>{{ $bill->id }}</td>
-                    <td>{{ $bill->customer_id }}</td>
-                    <td>{{ $bill->username }}</td>
-                    <td>{{ $bill->mobile }} </td>
-                    <td>{{ $bill->description }}</td>
-                    <td>{{ $bill->amount }}</td>
-                    <td>{{ $bill->billing_period }}</td>
-                    <td>{{ $bill->due_date }}</td>
-                    <td>
-                        <div class="btn-group" role="group">
-
-                            <button id="btnGroupActionsOnCustomer" type="button" class="btn btn-danger dropdown-toggle"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Action
-                            </button>
-
-                            <div class="dropdown-menu" aria-labelledby="btnGroupActionsOnCustomer">
-
-                                {{-- --}}
-                                @can('receivePayment', $bill)
-                                <a class="dropdown-item"
-                                    href="{{ route('customer_bills.cash-payments.create', ['customer_bill' => $bill->id]) }}">
-                                    Paid
-                                </a>
-                                @endcan
-                                {{-- --}}
-                                @can('editInvoice', $bill)
-                                <a class="dropdown-item"
-                                    href="{{ route('customer_bills.edit', ['customer_bill' => $bill->id]) }}">
-                                    Edit
-                                </a>
-                                @endcan
-                                {{-- --}}
-                                @can('printInvoice', $bill)
-                                <a class="dropdown-item"
-                                    href="{{ route('customer_bills.print', ['customer_bill' => $bill->id]) }}">
-                                    Print/Download
-                                </a>
-                                @endcan
-                                {{-- --}}
-
-                            </div>
-
-                        </div>
-
-                    </td>
-                </tr>
-                @endforeach
-
-            </tbody>
-
-        </table>
-
-    </div>
-    {{-- Bills --}}
-
     {{-- Payment History --}}
     <div class="tab-pane fade" id="PaymentHistory" role="tabpanel" aria-labelledby="PaymentHistory-tab">
 
@@ -516,40 +368,6 @@
     </div>
     {{-- Internet History --}}
 
-    {{-- bandwidth-graph --}}
-    <div class="tab-pane fade" id="BandwidthGraph" role="tabpanel" aria-labelledby="Bandwidth-graph-tab">
-
-        <div class="card-body">
-            <h5>Hourly Graph</h5>
-            <div>
-                <img class="img-fluid" src="{{ $graph->get('hourly') }}" alt="Image Not Found">
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h5>Daily Graph</h5>
-            <div>
-                <img class="img-fluid" src="{{ $graph->get('daily') }}" alt="Image Not Found">
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h5>Weekly Graph</h5>
-            <div>
-                <img class="img-fluid" src="{{ $graph->get('weekly') }}" alt="Image Not Found">
-            </div>
-        </div>
-
-        <div class="card-body">
-            <h5>Monthly Graph</h5>
-            <div>
-                <img class="img-fluid" src="{{ $graph->get('monthly') }}" alt="Image Not Found">
-            </div>
-        </div>
-
-    </div>
-    {{-- bandwidth-graph --}}
-
     {{-- SMS History --}}
     <div class="tab-pane fade" id="SmsHistory" role="tabpanel" aria-labelledby="SmsHistory-tab">
 
@@ -581,182 +399,4 @@
     </div>
     {{-- SMS History --}}
 
-    {{-- package_change_history --}}
-    <div class="tab-pane fade" id="package_change_history" role="tabpanel" aria-labelledby="package_change_history-tab">
-
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">From Package</th>
-                    <th scope="col">To Package</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Time</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($customer->package_change_histories as $package_change_history)
-                <tr>
-                    <td>{{ $package_change_history->from_package }}</td>
-                    <td>{{ $package_change_history->to_package }}</td>
-                    <td>{{ $package_change_history->status }}</td>
-                    <td>{{ $package_change_history->created_at }}</td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-
-    </div>
-    {{-- package_change_history --}}
-
 </div>
-
-{{-- Actions --}}
-<fieldset class="border border-info p-2">
-
-    <legend class="w-auto">Actions</legend>
-
-    <div class="d-flex align-content-start flex-wrap">
-
-        @if (Auth::user()->subscription_status === 'suspended')
-
-        <a class="btn btn-link" href="#">
-            Subscription Suspended
-        </a>
-
-        @else
-
-        {{-- --}}
-        @if ($customer->payment_status == 'billed')
-        <a class="btn btn-link" href="{{ route('customer_bills.index', ['customer_id' => $customer->id]) }}">
-            Bills
-        </a>
-        @endif
-        {{-- --}}
-        @can('update', $customer)
-        @if (isset($customers))
-        <a class="btn btn-link"
-            href="{{ route('customers.edit', ['customer' => $customer->id, 'page' => $customers->currentPage()]) }}">
-            Edit
-        </a>
-        @else
-        <a class="btn btn-link" href="{{ route('customers.edit', ['customer' => $customer->id, 'page' => 1]) }}">
-            Edit
-        </a>
-        @endif
-        @endcan
-        {{-- --}}
-        @can('activate', $customer)
-        <a class="btn btn-link" href="{{ route('customer-activate', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Activate
-        </a>
-        @endcan
-        {{-- --}}
-        @can('suspend', $customer)
-        <a class="btn btn-link" href="{{ route('customer-suspend', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Suspend
-        </a>
-        @endcan
-        {{-- --}}
-        @can('disable', $customer)
-        <a class="btn btn-link" href="{{ route('customer-disable', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Disable
-        </a>
-        @endcan
-        {{-- --}}
-        @can('editSuspendDate', $customer)
-        <a class="btn btn-link" href="{{ route('customers.suspend_date.create', ['customer' => $customer->id ]) }}"
-            onclick="showWait()">
-            Edit Date
-        </a>
-        @endcan
-        {{-- --}}
-        @can('editSpeedLimit', $customer)
-        <a class="btn btn-link" href="{{ route('customer-package-time-limit.edit', ['customer' => $customer->id]) }}">
-            Edit Time
-        </a>
-        <a class="btn btn-link" href="{{ route('customer-package-speed-limit.edit', ['customer' => $customer->id]) }}">
-            Edit Speed
-        </a>
-        <a class="btn btn-link" href="{{ route('customer-package-volume-limit.edit', ['customer' => $customer->id]) }}">
-            Edit Volume
-        </a>
-        @endcan
-        {{-- --}}
-        @can('changePackage', $customer)
-        <a class="btn btn-link" href="{{ route('customer-package-change.edit', ['customer' => $customer->id]) }}">
-            Edit Package
-        </a>
-        @endcan
-        {{-- --}}
-        @can('changeOperator', $customer)
-        <a class="btn btn-link" href="{{ route('customers.change_operator.create', ['customer' => $customer->id]) }}">
-            Change Operator
-        </a>
-        @endcan
-        {{-- --}}
-        @can('generateBill', $customer)
-        <a class="btn btn-link" href="{{ route('customers.customer_bills.create', ['customer' => $customer->id]) }}">
-            Generate Bill
-        </a>
-        @endcan
-        {{-- --}}
-        @can('removeMacBind', $customer)
-        <a class="btn btn-link" href="{{ route('mac-bind-destroy', ['customer' => $customer->id]) }}">
-            Remove MAC Bind
-        </a>
-        @endcan
-        {{-- --}}
-        @can('sendSms', $customer)
-        <a class="btn btn-link" href="{{ route('customers.sms_histories.create', ['customer' => $customer->id]) }}">
-            SMS
-        </a>
-        @endcan
-        {{-- --}}
-        @can('sendLink', $customer)
-        <a class="btn btn-link" href="{{ route('customer.send-payment-link.create', ['customer' => $customer->id]) }}">
-            Payment Link
-        </a>
-        @endcan
-        {{-- --}}
-        @can('advancePayment', $customer)
-        <a class="btn btn-link" href="{{ route('customers.advance_payment.create', ['customer' => $customer->id]) }}">
-            Advance Payment
-        </a>
-        @endcan
-        {{-- --}}
-        @can('activateFup', $customer)
-        <a class="btn btn-link" href="{{ route('activate-fup', ['customer' => $customer->id ]) }}" onclick="showWait()">
-            FUP
-        </a>
-        @endcan
-        {{-- --}}
-        <a class="btn btn-link"
-            href="{{ route('customers.customer_complains.create', ['customer' => $customer->id]) }}">
-            Add Complaint
-        </a>
-        {{-- --}}
-        <a class="btn btn-link" href="{{ route('customers.internet-history.create', ['customer' => $customer->id]) }}">
-            <i class="fas fa-download"></i>
-            Internet History
-        </a>
-        {{-- --}}
-        <a class="btn btn-link" href="{{ route('customers.others-payments.create', ['customer' => $customer->id]) }}">
-            Other Payment
-        </a>
-        {{-- --}}
-        @can('disconnect', $customer)
-        <a class="btn btn-link" href="#"
-            onclick="if(confirm('Are you sure?')) callURL('{{ route('customers.disconnect.create', ['customer' => $customer->id]) }}');">
-            Disconnect
-        </a>
-        @endcan
-        {{-- --}}
-        @endif
-
-    </div>
-
-</fieldset>
-{{-- Actions --}}

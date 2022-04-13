@@ -6,8 +6,10 @@ use App\Http\Controllers\CardDistributorPaymentsController;
 use App\Http\Controllers\CardDistributorsPaymentsDownloadController;
 use App\Http\Controllers\CustomerActivateController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\CustomerCreateController;
 use App\Http\Controllers\CustomerDetailsController;
 use App\Http\Controllers\CustomerDisableController;
+use App\Http\Controllers\CustomerDuplicateValueCheckController;
 use App\Http\Controllers\CustomerIdSearchController;
 use App\Http\Controllers\CustomerMobileSearchController;
 use App\Http\Controllers\CustomerNameSearchController;
@@ -27,6 +29,7 @@ use App\Http\Controllers\RechargeCardController;
 use App\Http\Controllers\RechargeCardDownloadController;
 use App\Http\Controllers\RouterConfigurationController;
 use App\Http\Controllers\SuspendCustomerWidgetController;
+use App\Http\Controllers\TempCustomerController;
 use App\Http\Controllers\TempPackageController;
 use Illuminate\Support\Facades\Route;
 
@@ -139,20 +142,16 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
 
     #start <<customer list, create & edit>>
 
+    Route::get('/check-customers-uniqueness', [CustomerDuplicateValueCheckController::class, '__invoke']);
+
+    Route::resource('temp_customers', TempCustomerController::class)
+        ->only(['create', 'store']);
+
+    Route::resource('temp_customers.customers', CustomerCreateController::class)
+        ->only(['create', 'store']);
+
     Route::resource('customers', CustomerController::class)
         ->except(['create', 'store']);
-
-    Route::resource('/customer-id', CustomerIdSearchController::class)
-        ->only(['show']);
-
-    Route::resource('/customer-mobiles', CustomerMobileSearchController::class)
-        ->only(['index', 'show']);
-
-    Route::resource('/customer-usernames', CustomerUsernameSearchController::class)
-        ->only(['index', 'show']);
-
-    Route::resource('/customer-names', CustomerNameSearchController::class)
-        ->only(['index', 'show']);
 
     Route::resource('/global-customer-search', GlobalCustomerSearchController::class)
         ->only(['index', 'show']);

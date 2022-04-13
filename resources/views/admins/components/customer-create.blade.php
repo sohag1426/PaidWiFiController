@@ -121,20 +121,6 @@
             </div>
             <!--/row-->
 
-            {{-- custom fields --}}
-            <div class="row">
-                @while ($custom_field = $custom_fields->shift())
-                <div class="col">
-                    <div class="form-group">
-                        <label for="{{ $custom_field->id }}">{{ $custom_field->name }}</label>
-                        <input name="{{ $custom_field->id }}" type="text" class="form-control"
-                            id="{{ $custom_field->id }}" value="">
-                    </div>
-                </div>
-                @endwhile
-            </div>
-            {{-- custom fields --}}
-
         </div>
         <!--/card-body-->
 
