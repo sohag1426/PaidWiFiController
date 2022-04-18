@@ -66,24 +66,6 @@ Home
         </a>
         {{-- Internet History --}}
 
-        {{-- Bandwidth Graph --}}
-        <a class="btn btn-app bg-lightblue" href="{{ route('customers.graph', ['mobile' => $customer->mobile]) }}"
-            onclick="showWait()">
-            <i class="fas fa-chart-bar"></i>
-            <h6> Bandwidth Graph </h6>
-        </a>
-        {{-- Bandwidth Graph --}}
-
-        {{-- Bills --}}
-        @if ($customer->connection_type !== 'Hotspot')
-        <a class="btn btn-app bg-purple" href="{{ route('customers.bills', ['mobile' => $customer->mobile]) }}"
-            onclick="showWait()">
-            <i class="fas fa-file-invoice-dollar"></i>
-            <h6> Bills </h6>
-        </a>
-        @endif
-        {{-- Bills --}}
-
         {{-- Payment History --}}
         <a class="btn btn-app bg-olive" href="{{ route('customers.payments', ['mobile' => $customer->mobile]) }}"
             onclick="showWait()">
@@ -91,15 +73,6 @@ Home
             <h6> Payment History </h6>
         </a>
         {{-- Payment History --}}
-
-        {{-- Complaints --}}
-        <a class="btn btn-app bg-teal"
-            href="{{ route('complaints-customer-interface.index', ['mobile' => $customer->mobile]) }}"
-            onclick="showWait()">
-            <i class="fas fa-mail-bulk"></i>
-            <h6> Complaints </h6>
-        </a>
-        {{-- Complaints --}}
 
     </div>
 

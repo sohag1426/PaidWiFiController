@@ -117,5 +117,4 @@ Route::middleware(['customer.auth'])->group(function () {
     //Pay Internet Payment with recharge cards
     Route::resource('customer_payments.recharge-cards', RechargeCardPaymentController::class)
         ->only(['create', 'store']);
-
 });

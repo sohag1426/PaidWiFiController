@@ -62,29 +62,11 @@ $links[$active_link] = 1;
         </a>
     </li>
     {{--  --}}
-    <li class="nav-item">
-        <a href="{{ route('customers.graph', ['mobile' => $customer->mobile]) }}"
-            class="nav-link @if ($links['7']) active @endif" onclick="showWait()">
-            <i class="fas fa-chart-bar"></i>
-            Bandwidth Graph
-        </a>
-    </li>
-    {{--  --}}
     <a href="{{ route('customers.card-stores', ['mobile' => $customer->mobile]) }}"
         class="nav-link @if ($links['3']) active @endif" onclick="showWait()">
         <i class="fas fa-store"></i>
         Card Stores
     </a>
-    {{--  --}}
-    @if ($customer->connection_type !== 'Hotspot')
-    <li class="nav-item">
-        <a href="{{ route('customers.bills', ['mobile' => $customer->mobile]) }}"
-            class="nav-link @if ($links['4']) active @endif" onclick="showWait()">
-            <i class="fas fa-file-invoice-dollar"></i>
-            Bills
-        </a>
-    </li>
-    @endif
     {{--  --}}
     <li class="nav-item">
         <a href="{{ route('customers.payments', ['mobile' => $customer->mobile]) }}"
@@ -94,13 +76,4 @@ $links[$active_link] = 1;
         </a>
     </li>
     {{--  --}}
-    <li class="nav-item">
-        <a href="{{ route('complaints-customer-interface.index', ['mobile' => $customer->mobile]) }}"
-            class="nav-link @if ($links['6']) active @endif" onclick="showWait()">
-            <i class="fas fa-mail-bulk"></i>
-            Complaints
-        </a>
-    </li>
-    {{--  --}}
-
 </ul>
