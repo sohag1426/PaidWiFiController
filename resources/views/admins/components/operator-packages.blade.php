@@ -92,15 +92,6 @@
                                     @endcan
                                     {{-- Edit --}}
 
-                                    {{-- replace --}}
-                                    @can('replace', $package)
-                                    <a class="dropdown-item"
-                                        href="{{ route('packages.replace.create', ['package' => $package->id]) }}">
-                                        Replace
-                                    </a>
-                                    @endcan
-                                    {{-- replace --}}
-
                                     {{-- delete --}}
                                     @can('delete', $package)
                                     <form method="post"
