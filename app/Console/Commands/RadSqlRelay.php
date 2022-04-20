@@ -2,8 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Models\Freeradius\radacct;
-use App\Models\pgsql\pgsql_customer;
+use App\Models\radacct;
+use App\Models\pgsql_customer;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
