@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
         // Radsqlrelay
-        $schedule->command('rad:sql_relay')->everyMinute();
+        $schedule->command('rad:sql_relay')->everyTwoMinutes();
     }
 
     /**
