@@ -12,9 +12,30 @@ class SmsHistoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $operator = $request->user();
+
+        $where = [];
+
+        // default filter
+        $where[] = ['operator_id', '=', $operator->id];
+
+        // sms_bill_id
+        if ($request->filled('sms_bill_id')) {
+            $where[] = ['sms_bill_id', '=', $request->sms_bill_id];
+        }
+
+        // to_number
+        if ($request->filled('to_number')) {
+            $where[] = ['to_number', '=', $request->to_number];
+        }
+
+        $histories = sms_history::where($where)->orderBy('id', 'desc')->paginate(15);
+
+        return view('admins.group_admin.sms-histories', [
+            'histories' => $histories,
+        ]);
     }
 
     /**

@@ -24,6 +24,7 @@ use App\Http\Controllers\PackageCreateController;
 use App\Http\Controllers\RechargeCardController;
 use App\Http\Controllers\RechargeCardDownloadController;
 use App\Http\Controllers\RouterConfigurationController;
+use App\Http\Controllers\SmsHistoryController;
 use App\Http\Controllers\SuspendCustomerWidgetController;
 use App\Http\Controllers\TempCustomerController;
 use App\Http\Controllers\TempPackageController;
@@ -183,6 +184,10 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
         ->only(['index', 'show']);
 
     #end <<customer list, create & edit>>
+
+    Route::resource('sms_histories', SmsHistoryController::class)
+        ->only(['index', 'create', 'store', 'show']);
+
 });
 
 

@@ -211,6 +211,35 @@
                 </li>
                 <!--/Customers menu[5]-->
 
+                <!--SMS menus[10]-->
+                <li class="nav-item has-treeview @if ($menu['10']) menu-open @endif ">
+
+                    <a href="#" class="nav-link @if ($menu['10']) active @endif ">
+                        <i class="far fa-envelope"></i>
+                        <p>
+                            SMS
+                            <i class="fas fa-caret-left right"></i>
+                        </p>
+                    </a>
+
+                    <ul class="nav nav-treeview">
+
+                        <!--SMS History-->
+                        <li class="nav-item">
+                            <a href="{{ route('sms_histories.index') }}"
+                                class="nav-link @if ($link['10']['0']) active @endif ">
+                                <i class="fas fa-angle-right nav-icon"></i>
+                                <p>SMS History</p>
+                            </a>
+                        </li>
+                        <!--/SMS History-->
+
+                    </ul>
+
+                </li>
+                <!--/SMS menu[10]-->
+
+
             </ul>
 
         </nav>
